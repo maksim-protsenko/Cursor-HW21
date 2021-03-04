@@ -18,16 +18,14 @@ public class PoemController {
 
     @GetMapping(value = "/info")
     public List<Poem> getInfo() {
-        List<Poem> list = poemRepository.findAll();
-        System.out.println(list);
-        return list;
+        return poemRepository.findAll();
     }
 
     @GetMapping(value = "/easteregg")
     public String easterBunny() {
-        return "Once I saw the Easter Bunny\n" +
-                "Come hop, hop, hop.\n" +
-                "So i Cried, \"Dear Bunny\n" +
+        return "Once I saw the Easter Bunny " +
+                "Come hop, hop, hop. " +
+                "So i Cried, \"Dear Bunny " +
                 "Will you stop, stop, stop?\"";
     }
 }
