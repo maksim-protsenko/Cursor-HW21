@@ -5,6 +5,8 @@ services:
     image: "app-image:latest"
     build:
       context: .
+    ports:
+      - "8080:8080"
     container_name: app-compose
     depends_on:
       - db
@@ -13,17 +15,11 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
-    ports:
-    - 8081:8080
   db:
-    image: "testdb:latest"
+    image: "db-image:latest"
     build:
-      context: ./dockerDb
-
+      context: ./dockerdb
     ports:
-      - 5556:5432
+      - "5432:5432"
     container_name: db-compose
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    restart: always
